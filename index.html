@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <form>
+          <label for="city">Search for City:</label>
+          <input name="city" type="text" placeholder="City Name" id="search">
+        </form>
+        <div id="pastSearches">
+
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="row">
+          <div class="current">current</div>
+        </div>
+        <div class="row">
+          <h1>5-Day Forecast</h1>
+          <div class="col f1">test1</div>
+          <div class="col f2">test2</div>
+          <div class="col f3">test3</div>
+          <div class="col f4">test4</div>
+          <div class="col f5">test5</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
+  </script>
+  <script>
+
+    let apiKey = 'aa6cbc221d6a0641446e4c1089a0233f'
+    // let apiKey = '710a14b7ca1155280945bfbd3c9be6da'
+    let cityName = 'Westminster'
+    let cnt = 5
+    let exclude = 'minutely,hourly,alerts'
+
+    let callNow = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
+
+    let weatherCode = ''
+    let weatherImg = `http://openweathermap.org/img/wn/${weatherCode}@2x.png`
+
+
+    axios.get(callNow)
+      .then(res => {
+
+        let lat = res.data.coord.lat
+        console.log(lat)
+        let lon = res.data.coord.lon
+        console.log(lon)
+
+
+
+        let callForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&appid=${apiKey}&units=imperial`
+
+        axios.get(callForecast)
+          .then(res => {
+            console.log(res)
+            let weatherNow = res.data.current.weather[0]
+            console.log(weatherNow)
+            let tempNow = res.data.current.temp
+            console.log(tempNow)
+            let humidityNow = res.data.current.humidity
+            console.log(humidityNow)
+            let uvNow = res.data.current.uvi
+            console.log(uvNow)
+
+            for (i = 0; i < 5; i++) {
+              let weatherForecast = res.data.daily[i].weather[0]
+              console.log(i)
+              console.log(weatherForecast)
+              let tempForecast = res.data.daily[i].temp
+              console.log(tempForecast)
+              let uvForecast = res.data.daily[i].uvi
+              console.log(uvForecast)
+              let humidityForecast = res.data.daily[i].humidity
+              console.log(humidityForecast)
+            }
+          })
+          .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
+
+  </script>
+
+</body>
+
+</html>
