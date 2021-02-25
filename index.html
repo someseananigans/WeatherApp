@@ -8,33 +8,95 @@
   <title>Weather App</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
 
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <form>
-          <label for="city">Search for City:</label>
-          <input name="city" type="text" placeholder="City Name" id="search">
-        </form>
-        <div id="pastSearches">
+  <nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand mb-0 h1" href="#">Weather Dashboard</a>
+    </div>
+  </nav>
 
+  <div class="container-fluid weatherApp">
+    <div class="row lArea">
+      <div class="col-md-3">
+
+        <form>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search by City" id='search'>
+            <button class="btn btn-outline-secondary fa fa-search btn-primary" type="button" id="button-addon2"></button>
+          </div>
+        </form>
+        
+        <div id="pastSearches">
+          <ul class="list-group" id='list'>
+            <li class="list-group-item bg-dark">Recent Searches</li>
+          </ul>
         </div>
       </div>
 
-      <div class="col">
-        <div class="row">
-          <div class="current">current</div>
+      <div class="col-md-9">
+        <div class="row rArea">
+          <div id="current">
+            <!-- <h1>City Name (Current Date)
+              <img src="" alt="icon">
+            </h1> -->
+            <span>Your search results will appear here:</span>
+            <div id='currentDetails'>
+              <!-- <p>Temperature: </p>
+              <p>Humidity: </p>
+              <p>Wind Speed: </p>
+              <p>UV Index: </p> -->
+            </div>
+          </div>
         </div>
         <div class="row">
-          <h1>5-Day Forecast</h1>
-          <div class="col f1">test1</div>
-          <div class="col f2">test2</div>
-          <div class="col f3">test3</div>
-          <div class="col f4">test4</div>
-          <div class="col f5">test5</div>
+          <h1 class="fHead">5-Day Forecast</h1>
+          <div class="col-sm-12 col-md" >
+            <div id="f1" class="forecast">
+              <!-- <h2>Date</h2>
+              <img src="" alt="icon">
+              <p>Temp</p>
+              <p>Humidity</p> -->
+            </div>
+          </div>
+          <div class="col-sm-12 col-md" >
+            <div id="f2" class="forecast">
+              <!-- <h2>Date</h2>
+              <img src="" alt="icon">
+              <p>Temp</p>
+              <p>Humidity</p> -->
+            </div>
+          </div>
+          <div class="col-sm-12 col-md" >
+            <div id="f3" class="forecast">
+              <!-- <h2>Date</h2>
+              <img src="" alt="icon">
+              <p>Temp</p>
+              <p>Humidity</p> -->
+            </div>
+          </div>
+          <div class="col-sm-12 col-md" >
+            <div id="f4" class="forecast">
+              <!-- <h2>Date</h2>
+              <img src="" alt="icon">
+              <p>Temp</p>
+              <p>Humidity</p> -->
+            </div>
+          </div>
+          <div class="col-sm-12 col-md" >
+            <div id="f5" class="forecast">
+              <!-- <h2>Date</h2>
+              <img src="" alt="icon">
+              <p>Temp</p>
+              <p>Humidity</p> -->
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -43,63 +105,9 @@
 
 
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
-  </script>
-  <script>
-
-    let apiKey = 'aa6cbc221d6a0641446e4c1089a0233f'
-    // let apiKey = '710a14b7ca1155280945bfbd3c9be6da'
-    let cityName = 'Westminster'
-    let cnt = 5
-    let exclude = 'minutely,hourly,alerts'
-
-    let callNow = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
-
-    let weatherCode = ''
-    let weatherImg = `http://openweathermap.org/img/wn/${weatherCode}@2x.png`
-
-
-    axios.get(callNow)
-      .then(res => {
-
-        let lat = res.data.coord.lat
-        console.log(lat)
-        let lon = res.data.coord.lon
-        console.log(lon)
-
-
-
-        let callForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&appid=${apiKey}&units=imperial`
-
-        axios.get(callForecast)
-          .then(res => {
-            console.log(res)
-            let weatherNow = res.data.current.weather[0]
-            console.log(weatherNow)
-            let tempNow = res.data.current.temp
-            console.log(tempNow)
-            let humidityNow = res.data.current.humidity
-            console.log(humidityNow)
-            let uvNow = res.data.current.uvi
-            console.log(uvNow)
-
-            for (i = 0; i < 5; i++) {
-              let weatherForecast = res.data.daily[i].weather[0]
-              console.log(i)
-              console.log(weatherForecast)
-              let tempForecast = res.data.daily[i].temp
-              console.log(tempForecast)
-              let uvForecast = res.data.daily[i].uvi
-              console.log(uvForecast)
-              let humidityForecast = res.data.daily[i].humidity
-              console.log(humidityForecast)
-            }
-          })
-          .catch(err => console.log(err))
-      })
-      .catch(err => console.log(err))
-
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="./script.js"></script>
 
 </body>
 

@@ -1,0 +1,166 @@
+html *{
+  font-family: 'Comfortaa', cursive;
+}
+
+.navbar .container-fluid {
+  justify-content: center;
+}
+
+.navbar-light .navbar-brand {
+  font-size: 1.5rem;
+  color: whitesmoke;
+}
+
+.bg-dark {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+#current {
+  margin-top: .25rem;
+  height: 240px;
+  border: 1.5px solid rgb(187, 187, 187);
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+}
+
+#currentDetails {
+  margin-top: 14px;
+  padding-left: 6%;
+  padding-right: 6%;
+}
+
+.label {
+  color: rgb(0, 0, 0);
+  padding-top: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(77, 77, 77);
+  border-radius: 6px;
+  font-size: 19px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+
+.rArea {
+  margin: 10px;
+}
+
+.forecast {
+  height: 145px;
+  margin: 5px;
+  background-color: rgb(34, 148, 255);
+  color: white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  text-align: center;
+}
+
+.forecast p {
+  margin-bottom: 0rem;
+  margin-top: .25rem;
+}
+
+.forecast h2 {
+  padding-top: .25rem;
+  margin-top: .25rem;
+  font-size: 20px;
+}
+
+input {
+  width: 150px;
+}
+
+.input-group {
+  margin-top: 1rem;
+}
+
+h1 {
+  margin: 10px;
+  font-size: calc(1.175rem + 1.5vw);
+  text-align: center;
+}
+
+.fHead {
+  text-align: left;
+  font-size: 25px;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.weatherApp {
+  height: 900px;
+}
+
+img {
+  width: 70px;
+  margin: -12px;
+}
+
+span {
+  font-size: 23px;
+}
+
+.lArea {
+  height: 100%;
+}
+
+.col-md-3 {
+  background-color: rgb(238, 238, 238);
+}
+
+.btn-outline-secondary {
+  color: white;
+}
+
+.col-sm-12 {
+  padding: 0px;
+}
+
+@media only screen and (max-width: 767px) {
+  .col-md-3 {
+    padding: 10px;
+    /* height: 60px; */
+  }
+  .col-md {
+    display: flex;
+    justify-content: center;
+  }
+  .lArea {
+    height: 50%;
+  }
+  .forecast {
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 0px;
+  }
+}
+
+.extreme {
+  background-color: rgb(255, 74, 74);
+}
+.very {
+  background-color: rgb(255, 74, 74);
+}
+.high {
+  background-color: rgb(255, 214, 153);
+}
+.mod {
+  background-color: rgb(245, 255, 199);
+}
+.low {
+  background-color: rgb(199, 255, 199);
+}
